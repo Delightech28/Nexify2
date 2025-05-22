@@ -56,7 +56,9 @@ const BuyersHeader = () => {
             <Link to="/buyers/kids" className="text-gray-800 hover:text-green-600">Kids</Link>
           </nav>
           <FaHeart className="text-gray-600 cursor-pointer" />
+          <Link to="/cart" className="text-gray-800 hover:text-green-600">
           <FaShoppingCart className="text-gray-600 cursor-pointer" />
+          </Link>
           <FaUser className="text-gray-600 cursor-pointer" />
         </div>
 

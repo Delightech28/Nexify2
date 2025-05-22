@@ -31,7 +31,7 @@ const PersonalizedSection = () => {
               <div className="w-8 h-8 bg-gray-300 rounded-lg mr-2">
               <img src={Card} alt="Jumia" className='w-8 h-8 object-cover'/>
               </div>
-              <span>Credit/Debit Card</span>
+              <span>Credit/Debit Card</span> 
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>

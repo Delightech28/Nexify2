@@ -7,6 +7,7 @@ import DashboardPage from "./Pages/DashboardPage";
 import SignUpPage from "./Pages/SignUpPage";
 import LoginPage from "./Pages/LoginPage";
 import BuyersRoutes from "./Components/Buyers/BuyersRoutes"; // Import the shoe app routes
+import ShoppingCartPage from './Pages/ShoppingCartPage';
 import { useState } from "react";
 
 function App() {
@@ -37,6 +38,8 @@ function App() {
             </div>
           }
         />
+          {/* Shoe App Routes */}
+          <Route path="/cart" element={<ShoppingCartPage />} />
          {/* Shoe App Routes */}
          <Route path="/buyers/*" element={<BuyersRoutes />} />
         {/* Other Routes */}
