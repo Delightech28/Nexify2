@@ -1,5 +1,6 @@
 // src/components/landing/GlobalSellingSection.jsx
 import { FaTwitter, FaFacebook, FaInstagram } from "react-icons/fa";
+import Social from '../../assets/social.jpeg';
 
 const GlobalSellingSection = () => {
   return (
@@ -17,11 +18,13 @@ const GlobalSellingSection = () => {
       </div>
       <div className="md:w-1/2 flex justify-center">
         <div className="bg-white p-4 rounded-lg shadow">
-          <div className="w-24 h-24 bg-gray-300 rounded-lg mb-4"></div>
+          <div className="w-24 h-24 bg-gray-300 rounded-lg mb-4">
+          <img src={Social} alt="Jumia" className='w-24 h-24 object-cover'/>
+          </div>
           <div className="flex items-center border rounded-lg p-2 mb-4">
             <input
               type="text"
-              value="https://splacer.com/4b2nd"
+              value="https://nexify.com/4b2nd"
               className="flex-1 p-2 text-sm"
               readOnly
             />

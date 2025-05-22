@@ -14,7 +14,7 @@ const LandingHeader = () => {
         {/* Logo */}
         <div className="flex items-center">
           <FaShoppingCart className="text-2xl text-green-600 mr-2" />
-          <span className="text-xl font-bold text-green-600">SPLACER</span>
+          <span className="text-xl font-bold text-green-600">Nexify</span>
         </div>
         {/* Hamburger Icon for Mobile */}
         <button
@@ -42,7 +42,7 @@ const LandingHeader = () => {
         <div className="flex justify-between items-center mb-6">
           <div className="flex items-center">
             <FaShoppingCart className="text-2xl text-white mr-2" />
-            <span className="text-xl font-bold">SPLACER</span>
+            <span className="text-xl font-bold">Nexify</span>
           </div>
           <button onClick={toggleMenu} className="p-2 rounded-lg bg-green-800 hover:bg-green-900 cursor-pointer">
             <FaTimes className="text-xl" />

@@ -15,9 +15,11 @@ const BuyersHeader = () => {
         {/* Logo */}
         <div className="flex items-center">
           {location.pathname === "/buyers" ? (
+            
             <h1 className="text-2xl font-bold text-green-600">Nexify</h1>
           ) : (
             <Link to="/buyers">
+          
               <h1 className="text-2xl font-bold text-green-600">Nexify</h1>
             </Link>
           )}

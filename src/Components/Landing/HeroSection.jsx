@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Nike from '../../assets/nike.jpg';
 import Shoe from '../../assets/shoe.jpg';
 import Bag from '../../assets/bag.jpg';
-import Clothes from '../../assets/clothes.png';
+import Clothes from '../../assets/clothes.jpeg';
 const HeroSection = () => {
     return (
       <section className="p-6 md:p-12 flex flex-col md:flex-row items-center bg-white">

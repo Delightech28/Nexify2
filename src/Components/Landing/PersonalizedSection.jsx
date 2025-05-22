@@ -1,4 +1,5 @@
 // src/components/landing/PersonalizedSection.jsx
+import Card from '../../assets/card.png';
 const PersonalizedSection = () => {
     return (
       <section className="p-6 md:p-12 bg-gray-50">
@@ -27,7 +28,9 @@ const PersonalizedSection = () => {
             </div>
             <p className="text-gray-600 mb-2">Payment</p>
             <div className="flex items-center mb-4">
-              <div className="w-8 h-8 bg-gray-300 rounded-lg mr-2"></div>
+              <div className="w-8 h-8 bg-gray-300 rounded-lg mr-2">
+              <img src={Card} alt="Jumia" className='w-8 h-8 object-cover'/>
+              </div>
               <span>Credit/Debit Card</span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

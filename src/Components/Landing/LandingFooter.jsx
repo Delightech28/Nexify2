@@ -46,7 +46,7 @@ const LandingFooter = () => {
         </div>
       </div>
       <div className="flex justify-between items-center mt-8 border-t pt-4">
-        <p className="text-gray-600 text-sm">© 2025 SPLACER Inc. All rights reserved.</p>
+        <p className="text-gray-600 text-sm">© 2025 Nexify Inc. All rights reserved.</p>
         <div className="flex space-x-4">
           <FaTwitter className="text-green-600 text-xl cursor-pointer" />
           <FaFacebook className="text-green-600 text-xl cursor-pointer" />

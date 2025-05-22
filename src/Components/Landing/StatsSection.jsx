@@ -1,6 +1,6 @@
 // src/components/landing/StatsSection.jsx
 import Nike from '../../assets/nike.jpg';
-import Shoe from '../../assets/shoe.jpg';
+import Jumia from '../../assets/jumia.jpeg';
 
 const StatsSection = () => {
     return (
@@ -21,7 +21,7 @@ const StatsSection = () => {
         </div>
         <div className="bg-white p-4 rounded-lg shadow">
           <div className="w-16 h-16 bg-gray-300 rounded-lg mb-4">
-          <img src={Shoe} alt="Nike Shoe" className='w-16 h-16 object-cover'/>
+          <img src={Jumia} alt="Jumia" className='w-16 h-16 object-cover'/>
           </div>
           <p className="text-sm">Partnering with</p>
         </div>

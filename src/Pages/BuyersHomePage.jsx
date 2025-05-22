@@ -3,17 +3,20 @@ import { useState } from "react";
 import BuyersHeader from "../Components/Buyers/BuyersHeader";
 import BuyersSidebar from "../Components/Buyers/BuyersSidebar";
 import ProductCard from "../Components/Buyers/ProductCard";
+import image1 from '../assets/clothes.jpeg';
+import image2 from '../assets/nike.jpg';
+import image3 from '../assets/shoe.jpg';
 
 const BuyersHomePage = () => {
   const shoes = [
     { id: 1, name: "Nike Air Force 1 Shadow", price: 130.00, originalPrice: 140.00, rating: 4.9, reviews: 123, image: "air-force-1.jpg", brand: "Nike", category: "Sneakers" },
-    { id: 2, name: "Nike Dunk High Retro", price: 125.00, originalPrice: 130.00, rating: 4.9, reviews: 123, image: "dunk-high.jpg", brand: "Nike", category: "Sneakers" },
-    { id: 3, name: "Nike Blazer Mid '77", price: 105.00, originalPrice: 110.00, rating: 4.9, reviews: 123, image: "blazer-mid.jpg", brand: "Nike", category: "Sneakers" },
-    { id: 4, name: "Nike Air Max 90 Futura", price: 150.00, originalPrice: 160.00, rating: 4.9, reviews: 123, image: "air-max-90.jpg", brand: "Nike", category: "Sneakers" },
+    { id: 2, name: "Nike Dunk High Retro", price: 125.00, originalPrice: 130.00, rating: 4.9, reviews: 123, image: image1, brand: "Nike", category: "Sneakers" },
+    { id: 3, name: "Nike Blazer Mid '77", price: 105.00, originalPrice: 110.00, rating: 4.9, reviews: 123, image: image2, brand: "Nike", category: "Sneakers" },
+    { id: 4, name: "Nike Air Max 90 Futura", price: 150.00, originalPrice: 160.00, rating: 4.9, reviews: 123, image: image3, brand: "Nike", category: "Sneakers" },
     { id: 5, name: "Nike Air Max 270", price: 136.97, originalPrice: 160.00, rating: 4.9, reviews: 123, image: "air-max-270.jpg", brand: "Nike", category: "Sneakers" },
-    { id: 6, name: "Nike Air Zoom Pegasus", price: 130.00, originalPrice: 150.00, rating: 4.9, reviews: 123, image: "zoom-pegasus.jpg", brand: "Nike", category: "Sneakers" },
-    { id: 7, name: "Nike Free Metcon 4", price: 120.00, originalPrice: 130.00, rating: 4.9, reviews: 123, image: "free-metcon.jpg", brand: "Nike", category: "Sneakers" },
-    { id: 8, name: "Nike Waffle One SE", price: 125.00, originalPrice: 130.00, rating: 4.9, reviews: 123, image: "waffle-one.jpg", brand: "Nike", category: "Sneakers" },
+    { id: 6, name: "Nike Air Zoom Pegasus", price: 130.00, originalPrice: 150.00, rating: 4.9, reviews: 123, image: image1, brand: "Nike", category: "Sneakers" },
+    { id: 7, name: "Nike Free Metcon 4", price: 120.00, originalPrice: 130.00, rating: 4.9, reviews: 123, image: image2, brand: "Nike", category: "Sneakers" },
+    { id: 8, name: "Nike Waffle One SE", price: 125.00, originalPrice: 130.00, rating: 4.9, reviews: 123, image: image3, brand: "Nike", category: "Sneakers" },
   ];
 
   const [selectedCategory, setSelectedCategory] = useState("Sneakers");
