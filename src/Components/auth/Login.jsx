@@ -31,6 +31,12 @@ const Login = () => {
             <FaFacebook className="mr-2 text-blue-600" /> Facebook
           </button>
         </div>
+        <Link to="/dashboard">
+            Go to vendor dashboard
+        </Link> &nbsp;
+        <Link to="/buyers/">
+            Go to buyers dashboard
+        </Link>
         {/* Divider */}
         <div className="flex items-center justify-center mb-6">
           <span className="border-t w-1/4"></span>
