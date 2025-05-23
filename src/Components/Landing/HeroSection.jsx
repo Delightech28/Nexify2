@@ -10,7 +10,7 @@ const HeroSection = () => {
         <div className="md:w-1/2 mb-6 md:mb-0">
           <p className="text-sm text-green-600 uppercase mb-2">#1 E-commerce Platform 2025</p>
           <h1 className="text-3xl md:text-5xl font-bold text-green-800 mb-4">
-            Explore, shop, repeat again.
+            Learn, Shop, Increase Sales.
           </h1>
           <p className="text-gray-600 mb-6">
             Nexify is a driving force behind the dreams of emerging entrepreneurs, a trusted partner for industry leaders.

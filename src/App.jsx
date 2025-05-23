@@ -8,6 +8,7 @@ import SignUpPage from "./Pages/SignUpPage";
 import LoginPage from "./Pages/LoginPage";
 import BuyersRoutes from "./Components/Buyers/BuyersRoutes"; // Import the shoe app routes
 import ShoppingCartPage from './Pages/ShoppingCartPage';
+import CheckoutPage from './Pages/CheckoutPage';
 import { useState } from "react";
 
 function App() {
@@ -38,8 +39,10 @@ function App() {
             </div>
           }
         />
-          {/* Shoe App Routes */}
+          {/* cart Routes */}
           <Route path="/cart" element={<ShoppingCartPage />} />
+
+          <Route path="/checkout" element={<CheckoutPage />} />
          {/* Shoe App Routes */}
          <Route path="/buyers/*" element={<BuyersRoutes />} />
         {/* Other Routes */}

@@ -56,15 +56,17 @@ const BuyersHeader = () => {
             <Link to="/buyers/kids" className="text-gray-800 hover:text-green-600">Kids</Link>
           </nav>
           <FaHeart className="text-gray-600 cursor-pointer" />
-          <Link to="/cart" className="text-gray-800 hover:text-green-600">
+
+          <Link to="/cart" className="text-gray-800 hover:text-green-600 cursor-pointer">
           <FaShoppingCart className="text-gray-600 cursor-pointer" />
           </Link>
+
           <FaUser className="text-gray-600 cursor-pointer" />
         </div>
 
         {/* Mobile Hamburger Menu Icon */}
-        <div className="md:hidden">
-          <button onClick={toggleMenu} aria-label="Toggle Menu">
+        <div className="md:hidden ">
+          <button onClick={toggleMenu} aria-label="Toggle Menu" className="cursor-pointer">
             <FaBars className="text-gray-600 text-2xl" />
           </button>
         </div>
@@ -86,7 +88,9 @@ const BuyersHeader = () => {
           </nav>
           <div className="flex space-x-4 mt-4">
             <FaHeart className="text-gray-600 cursor-pointer" />
-            <FaShoppingCart className="text-gray-600 cursor-pointer" />
+            <Link to="/cart" className="text-gray-800 hover:text-green-600 cursor-pointer">
+          <FaShoppingCart className="text-gray-600 cursor-pointer" />
+          </Link>
             <FaUser className="text-gray-600 cursor-pointer" />
           </div>
         </div>

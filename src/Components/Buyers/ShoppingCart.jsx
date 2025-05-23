@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { FaTrash } from "react-icons/fa";
 import image1 from '../../assets/clothes.jpeg';
-import image2 from '../assets/nike.jpg';
-import image3 from '../assets/shoe.jpg';
+import image2 from '../../assets/nike.jpg';
+import image3 from '../../assets/shoe.jpg';
+import BuyersHeader from './BuyersHeader';
 
-// Sample cart items (you can replace this with dynamic data from a state or API)
+// Sample cart items
 const initialCartItems = [
   {
     id: 1,
@@ -13,7 +15,7 @@ const initialCartItems = [
     size: "XL",
     price: 47.78,
     quantity: 1,
-    image: image1, // Placeholder image
+    image: image1,
   },
   {
     id: 2,
@@ -40,10 +42,10 @@ const ShoppingCart = () => {
 
   // Calculate totals
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const tax = 31.22; // Fixed tax as per the image
+  const tax = 31.22;
   const total = subtotal + tax;
 
-  // Free shipping progress (assuming $85 is the target for free shipping)
+  // Free shipping progress
   const freeShippingTarget = 85;
   const progress = Math.min((subtotal / freeShippingTarget) * 100, 100);
   const remainingForFreeShipping = Math.max(freeShippingTarget - subtotal, 0);
@@ -59,12 +61,19 @@ const ShoppingCart = () => {
     );
   };
 
+  // Handle delete item
+  const deleteItem = (id) => {
+    setCartItems(cartItems.filter((item) => item.id !== id));
+  };
+
   return (
+    <>
+    <BuyersHeader />
     <div className="min-h-screen bg-gray-50 p-4 md:p-6">
       {/* Header */}
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-xl md:text-2xl font-bold">Shopping Cart</h1>
-        <p className="text-sm text-gray-600">Help line: 102 123 23</p>
+        {/* <p className="text-sm text-gray-600">Help line: 102 123 23</p> */}
       </div>
 
       {/* Free Shipping Progress Bar */}
@@ -100,53 +109,84 @@ const ShoppingCart = () => {
         <p className="text-sm text-gray-600 mb-2">
           You have {cartItems.length} products in your cart
         </p>
-        <div className="flex justify-between text-sm font-semibold text-gray-700 mb-2">
-          <span>Product</span>
-          <div className="flex space-x-4 md:space-x-8">
-            <span>Price</span>
-            <span>Quantity</span>
-            <span>Total</span>
+        {/* Labels for larger screens */}
+        <div className="hidden md:flex justify-between text-sm font-semibold text-gray-700 mb-4">
+          <span className="w-1/2">Product</span>
+          <div className="flex w-1/2 justify-between">
+            <span className="ml-4">Price</span>
+            <span className="ml-4">Quantity</span>
+            <span className="ml-4">Total</span>
           </div>
         </div>
         {cartItems.map((item) => (
           <div
             key={item.id}
-            className="flex flex-col md:flex-row justify-between items-start md:items-center bg-white p-4 rounded-lg shadow-sm mb-2"
+            className="relative bg-white p-4 rounded-lg shadow-sm mb-2"
           >
-            <div className="flex items-center space-x-4">
-              <img
-                src={item.image}
-                alt={item.name}
-                className="w-16 h-16 md:w-20 md:h-20 object-cover rounded"
-              />
-              <div>
-                <h2 className="text-sm md:text-base font-medium">{item.name}</h2>
-                <p className="text-xs text-gray-500">Color: {item.color}</p>
-                <p className="text-xs text-gray-500">Size: {item.size}</p>
-                <p className="text-xs text-gray-500">• In Stock (2 Pcs)</p>
+            {/* Item Details */}
+            <div className="flex flex-col md:flex-row md:items-start">
+              <div className="flex items-start space-x-4 w-full md:w-1/2">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  className="w-16 h-16 md:w-20 md:h-20 object-cover rounded"
+                />
+                <div className="flex-1">
+                  <h2 className="text-sm md:text-base font-medium">{item.name}</h2>
+                  <p className="text-xs text-gray-500">Color: {item.color}</p>
+                  <p className="text-xs text-gray-500">Size: {item.size}</p>
+                  <p className="text-xs text-gray-500">• In Stock (2 Pcs)</p>
+                </div>
+              </div>
+              {/* Price, Quantity, Total */}
+              <div className="w-full md:w-1/2 mt-4 md:mt-0">
+                <div className="flex flex-row md:flex-row md:justify-between space-x-9 md:space-y-0">
+                  <div className="flex flex-col">
+                    <span className="md:hidden text-sm font-semibold text-gray-700 ml-4">
+                      Price:
+                    </span>
+                    <span className="text-sm md:text-base ml-4 md:ml-0">
+                      ${item.price.toFixed(2)}
+                    </span>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="md:hidden text-sm font-semibold text-gray-700 ml-4">
+                      Quantity:
+                    </span>
+                    <div className="inline-flex items-center space-x-2 ml-4 md:ml-0">
+                      <button
+                        onClick={() => updateQuantity(item.id, -1)}
+                        className="w-8 h-8 flex items-center justify-center border rounded"
+                      >
+                        -
+                      </button>
+                      <span className="text-sm">{item.quantity}</span>
+                      <button
+                        onClick={() => updateQuantity(item.id, 1)}
+                        className="w-8 h-8 flex items-center justify-center border rounded"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="md:hidden text-sm font-semibold text-gray-700 ml-4">
+                      Total:
+                    </span>
+                    <span className="text-sm md:text-base ml-4 md:ml-0">
+                      ${(item.price * item.quantity).toFixed(2)}
+                    </span>
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="flex items-center space-x-4 md:space-x-8 mt-4 md:mt-0">
-              <span className="text-sm md:text-base">${item.price.toFixed(2)}</span>
-              <div className="flex items-center space-x-2">
-                <button
-                  onClick={() => updateQuantity(item.id, -1)}
-                  className="w-8 h-8 flex items-center justify-center border rounded"
-                >
-                  -
-                </button>
-                <span className="text-sm">{item.quantity}</span>
-                <button
-                  onClick={() => updateQuantity(item.id, 1)}
-                  className="w-8 h-8 flex items-center justify-center border rounded"
-                >
-                  +
-                </button>
-              </div>
-              <span className="text-sm md:text-base">
-                ${(item.price * item.quantity).toFixed(2)}
-              </span>
-            </div>
+            {/* Delete Icon */}
+            <button
+              onClick={() => deleteItem(item.id)}
+              className="absolute bottom-4 right-4 text-red-500 hover:text-red-700"
+            >
+              <FaTrash className="w-5 h-5" />
+            </button>
           </div>
         ))}
       </div>
@@ -156,7 +196,7 @@ const ShoppingCart = () => {
         <p className="text-sm text-gray-600 mb-2">Expected Delivery: Friday</p>
         <div className="flex justify-between text-sm mb-2">
           <span>Sub Total:</span>
-          <span>${ feat.toFixed(2)}</span>
+          <span>${subtotal.toFixed(2)}</span>
         </div>
         <div className="flex justify-between text-sm mb-2">
           <span>Tax:</span>
@@ -168,7 +208,7 @@ const ShoppingCart = () => {
         </div>
         <div className="flex flex-col md:flex-row justify-between mt-4 space-y-2 md:space-y-0 md:space-x-2">
           <Link
-            to="/"
+            to="/buyers"
             className="w-full md:w-1/2 bg-gray-200 text-gray-800 py-2 rounded-lg text-center hover:bg-gray-300"
           >
             Continue Shopping
@@ -182,9 +222,8 @@ const ShoppingCart = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
 export default ShoppingCart;
-
-
