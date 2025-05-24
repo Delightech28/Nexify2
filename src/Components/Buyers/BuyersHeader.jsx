@@ -61,7 +61,9 @@ const BuyersHeader = () => {
           <FaShoppingCart className="text-gray-600 cursor-pointer" />
           </Link>
 
+          <Link to="/account-overview" className="text-gray-800 hover:text-green-600 cursor-pointer">
           <FaUser className="text-gray-600 cursor-pointer" />
+          </Link>
         </div>
 
         {/* Mobile Hamburger Menu Icon */}

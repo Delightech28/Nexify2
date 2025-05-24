@@ -1,9 +1,9 @@
 // src/pages/DashboardPage.jsx
-import StatsCard from "../Components/StatsCard";
-import RevenueGraph from "../Components/RevenueGraph";
-import EmailChart from "../Components/EmailChart";
-import RecentOrders from "../Components/RecentOrders";
-import DeliveryProgress from "../Components/DeliveryProgress";
+import StatsCard from "../Components/Vendors/StatsCard";
+import RevenueGraph from "../Components/Vendors/RevenueGraph";
+import EmailChart from "../Components/Vendors/EmailChart";
+import RecentOrders from "../Components/Vendors/RecentOrders";
+import DeliveryProgress from "../Components/Vendors/DeliveryProgress";
 
 const DashboardPage = () => {
   return (

@@ -21,7 +21,7 @@ const SignUp = () => {
         </div>
         {/* Welcome Text */}
         <h2 className="text-lg md:text-xl font-semibold text-center text-gray-800 mb-4">
-          Welcome to SPLACER! Sign up to order delicious food at your door.
+          Welcome to Nexify! Sign up to order delicious food at your door.
         </h2>
         {/* Social Login Buttons */}
         <div className="flex flex-col md:flex-row justify-center space-y-3 md:space-y-0 md:space-x-4 mb-6">

@@ -33,9 +33,12 @@ const Login = () => {
         </div>
         <Link to="/dashboard">
             Go to vendor dashboard
-        </Link> &nbsp;
+        </Link> &nbsp; &nbsp;
         <Link to="/buyers/">
             Go to buyers dashboard
+        </Link>&nbsp; &nbsp;
+        <Link to="/vendor-signin">
+            Go to vendor signin
         </Link>
         {/* Divider */}
         <div className="flex items-center justify-center mb-6">

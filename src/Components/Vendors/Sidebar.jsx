@@ -15,7 +15,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
   return (
     <div
-      className={`fixed inset-y-0 left-0 w-64 bg-blue-600 text-white flex flex-col p-4 transform ${
+      className={`fixed inset-y-0 left-0 w-64 bg-green-600 text-white flex flex-col p-4 transform ${
         isOpen ? "translate-x-0" : "-translate-x-full"
       } md:static md:translate-x-0 transition-transform duration-300 ease-in-out z-50`}
     >
@@ -27,7 +27,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             to={item.path}
             onClick={toggleSidebar} // Close sidebar on link click
             className={`flex items-center p-2 md:p-3 mb-2 rounded-lg ${
-              location.pathname === item.path ? "bg-blue-800" : "hover:bg-blue-700"
+              location.pathname === item.path ? "bg-green-800" : "hover:bg-green-700"
             }`}
           >
             <span className="mr-2 md:mr-3">{item.icon}</span>

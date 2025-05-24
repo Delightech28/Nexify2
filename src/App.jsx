@@ -1,7 +1,7 @@
 // src/App.jsx
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Sidebar from "./Components/Sidebar";
-import Header from "./Components/Header";
+import Sidebar from "./Components/Vendors/Sidebar";
+import Header from "./Components/Vendors/Header";
 import LandingPage from "./Pages/LandingPage";
 import DashboardPage from "./Pages/DashboardPage";
 import SignUpPage from "./Pages/SignUpPage";
@@ -10,6 +10,7 @@ import BuyersRoutes from "./Components/Buyers/BuyersRoutes"; // Import the shoe 
 import ShoppingCartPage from './Pages/ShoppingCartPage';
 import CheckoutPage from './Pages/CheckoutPage';
 import AccountOverviewPage from './Pages/AccountOverviewPage';
+import VendorSignIn from './Components/Vendors/VendorSignIn';
 import { useState } from "react";
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
          {/* Shoe App Routes */}
          <Route path="/buyers/*" element={<BuyersRoutes />} />
          <Route path="/account-overview" element={<AccountOverviewPage />} />
+         <Route path="/vendor-signin" element={<VendorSignIn />} />
         {/* Other Routes */}
         {/* <Route path="/" element={<h1 className="p-4 text-xl md:p-6 md:text-2xl">Home Page</h1>} /> */}
         <Route path="/calendar" element={<h1 className="p-4 text-xl md:p-6 md:text-2xl">Calendar Page</h1>} />
