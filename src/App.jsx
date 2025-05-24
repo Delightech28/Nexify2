@@ -9,6 +9,7 @@ import LoginPage from "./Pages/LoginPage";
 import BuyersRoutes from "./Components/Buyers/BuyersRoutes"; // Import the shoe app routes
 import ShoppingCartPage from './Pages/ShoppingCartPage';
 import CheckoutPage from './Pages/CheckoutPage';
+import AccountOverviewPage from './Pages/AccountOverviewPage';
 import { useState } from "react";
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
           <Route path="/checkout" element={<CheckoutPage />} />
          {/* Shoe App Routes */}
          <Route path="/buyers/*" element={<BuyersRoutes />} />
+         <Route path="/account-overview" element={<AccountOverviewPage />} />
         {/* Other Routes */}
         {/* <Route path="/" element={<h1 className="p-4 text-xl md:p-6 md:text-2xl">Home Page</h1>} /> */}
         <Route path="/calendar" element={<h1 className="p-4 text-xl md:p-6 md:text-2xl">Calendar Page</h1>} />
