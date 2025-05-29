@@ -11,6 +11,8 @@ import ShoppingCartPage from './Pages/ShoppingCartPage';
 import CheckoutPage from './Pages/CheckoutPage';
 import AccountOverviewPage from './Pages/AccountOverviewPage';
 import VendorSignIn from './Components/Vendors/VendorSignIn';
+import VendorSignUp from './Components/Vendors/VendorSignUp';
+import VendorSetupAccount from './Components/Vendors/VendorSetupAccount';
 import { useState } from "react";
 
 function App() {
@@ -49,6 +51,8 @@ function App() {
          <Route path="/buyers/*" element={<BuyersRoutes />} />
          <Route path="/account-overview" element={<AccountOverviewPage />} />
          <Route path="/vendor-signin" element={<VendorSignIn />} />
+         <Route path="/vendor-signup" element={<VendorSignUp />} />
+         <Route path="/vendor-setup-account" element={<VendorSetupAccount />} />
         {/* Other Routes */}
         {/* <Route path="/" element={<h1 className="p-4 text-xl md:p-6 md:text-2xl">Home Page</h1>} /> */}
         <Route path="/calendar" element={<h1 className="p-4 text-xl md:p-6 md:text-2xl">Calendar Page</h1>} />

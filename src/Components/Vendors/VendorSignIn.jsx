@@ -28,19 +28,19 @@ const VendorSignIn = () => {
       {/* Sign-In Buttons */}
       <div className="w-full max-w-md px-4 mb-6">
         {/* Sign in with Google */}
-        <button className="w-full flex items-center justify-center bg-white border border-gray-300 text-gray-700 py-3 rounded-lg shadow-sm hover:shadow-md transition-shadow mb-4">
+        <button className="w-full flex items-center justify-center bg-white border border-gray-300 text-gray-700 py-3 rounded-lg shadow-sm hover:shadow-md transition-shadow mb-4 cursor-pointer">
           <FcGoogle className="mr-2 text-xl" />
           Sign in with Google
         </button>
 
         {/* Sign in with Email */}
-        <button className="w-full flex items-center justify-center bg-white border border-gray-300 text-gray-700 py-3 rounded-lg shadow-sm hover:shadow-md transition-shadow mb-4">
+        <button className="w-full flex items-center justify-center bg-white border border-gray-300 text-gray-700 py-3 rounded-lg shadow-sm hover:shadow-md transition-shadow mb-4 cursor-pointer">
           <MdEmail className="mr-2 text-xl text-gray-700" />
           Sign in with Email
         </button>
 
         {/* Sign in with JUMIA (replace with your platform name) */}
-        <button className="w-full flex items-center justify-center bg-white border border-gray-300 text-gray-700 py-3 rounded-lg shadow-sm hover:shadow-md transition-shadow mb-4">
+        <button className="w-full flex items-center justify-center bg-white border border-gray-300 text-gray-700 py-3 rounded-lg shadow-sm hover:shadow-md transition-shadow mb-4 cursor-pointer">
           <FaStar className="mr-2 text-xl text-orange-500" />
           Sign in with Nexify Account
         </button>
@@ -49,7 +49,7 @@ const VendorSignIn = () => {
       {/* Sell on Platform Button */}
       <div className="w-full max-w-md px-4 mb-8">
         <Link to="/vendor-signup">
-          <button className="w-full bg-green-500 text-white py-3 rounded-lg hover:bg-green-600 transition-colors">
+          <button className="w-full bg-green-500 text-white py-3 rounded-lg hover:bg-green-600 transition-colors cursor-pointer">
             Sell on Our Platform
           </button>
         </Link>
