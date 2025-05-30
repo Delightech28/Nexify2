@@ -16,6 +16,7 @@ const VendorSignUp = () => {
     { name: "Kenya", code: "KE" },
     { name: "Ghana", code: "GH" },
     { name: "Uganda", code: "UG" },
+    { name: "South Africa", code: "ZA"},
     // Add more countries as needed
   ];
 

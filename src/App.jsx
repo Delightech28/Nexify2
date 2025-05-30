@@ -13,6 +13,10 @@ import AccountOverviewPage from './Pages/AccountOverviewPage';
 import VendorSignIn from './Components/Vendors/VendorSignIn';
 import VendorSignUp from './Components/Vendors/VendorSignUp';
 import VendorSetupAccount from './Components/Vendors/VendorSetupAccount';
+import VendorSetupAccountv from './Components/Vendors/VendorSetupAccountv';
+import VendorSetupAccountp from './Components/Vendors/VendorSetupAccountp';
+import VendorShopInfo from './Components/Vendors/VendorShopInfo';
+import LoadingScreen from './Components/Vendors/LoadingScreen';
 import { useState } from "react";
 
 function App() {
@@ -53,6 +57,10 @@ function App() {
          <Route path="/vendor-signin" element={<VendorSignIn />} />
          <Route path="/vendor-signup" element={<VendorSignUp />} />
          <Route path="/vendor-setup-account" element={<VendorSetupAccount />} />
+         <Route path="/vendor-setup-accountv" element={<VendorSetupAccountv />} />
+         <Route path="/vendor-setup-accountp" element={<VendorSetupAccountp />} />
+         <Route path="/vendor-shop-info" element={<VendorShopInfo />} />
+         <Route path="/vendor-success" element={<LoadingScreen />} />
         {/* Other Routes */}
         {/* <Route path="/" element={<h1 className="p-4 text-xl md:p-6 md:text-2xl">Home Page</h1>} /> */}
         <Route path="/calendar" element={<h1 className="p-4 text-xl md:p-6 md:text-2xl">Calendar Page</h1>} />

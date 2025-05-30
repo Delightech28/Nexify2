@@ -16,7 +16,7 @@ const VendorSetupAccount = () => {
     } else {
       setError("");
       // Proceed to the next step (e.g., navigate to the next page)
-      navigate("/vendor-complete-profile"); // Placeholder route
+      navigate("/vendor-setup-accountv"); // Placeholder route
     }
   };
 
@@ -45,7 +45,7 @@ const VendorSetupAccount = () => {
       </div>
 
       {/* Heading and Subheading */}
-      <div className="w-full max-w-md px-4 mb-4">
+      <div className="w-full max-w-md px-4 mb-4 text-center">
         <h1 className="text-2xl font-semibold text-gray-800 mb-2">
           Setup your account
         </h1>
@@ -60,6 +60,7 @@ const VendorSetupAccount = () => {
           type="email"
           placeholder="Email Address *"
           value={email}
+          name="email"
           onChange={(e) => {
             setEmail(e.target.value);
             setError(""); // Clear error on input change
@@ -75,16 +76,6 @@ const VendorSetupAccount = () => {
         >
           VERIFY
         </button>
-      </div>
-
-      {/* Language Selector */}
-      <div className="absolute bottom-4 right-4 flex items-center">
-        <span className="mr-2 text-gray-600">🌐</span>
-        <select className="bg-transparent text-gray-600 border-none focus:outline-none">
-          <option value="en">EN</option>
-          <option value="fr">FR</option>
-          <option value="es">ES</option>
-        </select>
       </div>
     </div>
   );
