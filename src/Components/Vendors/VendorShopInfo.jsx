@@ -1,48 +1,93 @@
 // src/Components/Vendors/VendorShopInfo.jsx
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { FaBriefcase, FaUser, FaInfoCircle } from "react-icons/fa"; // Import icons from react-icons
+import { useNavigate, useLocation } from "react-router-dom";
+import { FaBriefcase, FaUser, FaInfoCircle } from "react-icons/fa";
 import VendorsImage from '../../assets/vendors.png';
 
 const VendorShopInfo = () => {
-  const [accountType, setAccountType] = useState("Business"); // Default to Business as per screenshot
-  const [shopName, setShopName] = useState(""); // Pre-filled as per screenshot
-  const [shippingZone, setShippingZone] = useState(""); // Pre-filled as per screenshot
-  const [hearAbout, setHearAbout] = useState(""); // Pre-filled as per screenshot
-  const [agreement, setAgreement] = useState(true); // Checkbox checked as per screenshot
+  const [accountType, setAccountType] = useState("Business");
+  const [shopName, setShopName] = useState("");
+  const [shippingZone, setShippingZone] = useState("");
+  const [hearAbout, setHearAbout] = useState("");
+  const [agreement, setAgreement] = useState(true);
   const [error, setError] = useState("");
-  const [showAccountTypeTooltip, setShowAccountTypeTooltip] = useState(false); // State for Account type tooltip
-  const [showShopNameTooltip, setShowShopNameTooltip] = useState(false); // State for Shop name tooltip
+  const [showAccountTypeTooltip, setShowAccountTypeTooltip] = useState(false);
+  const [showShopNameTooltip, setShowShopNameTooltip] = useState(false);
   const [hoverAccountTypeTooltip, setHoverAccountTypeTooltip] = useState(false);
   const [hoverShopNameTooltip, setHoverShopNameTooltip] = useState(false);
-  const [showModal, setShowModal] = useState(false); // State for modal visibility
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
-  // Shipping zones grouped by country
-  const shippingZones = [
-    {
+  // Get the selected country from localStorage, fall back to location.state, then default to Nigeria
+  const selectedCountry = localStorage.getItem("selectedCountry") || location.state?.country || "Nigeria";
+
+  // Define all shipping zones by country
+  const allShippingZones = {
+    Nigeria: {
       country: "Nigeria",
-      zones: ["Lagos", "Abuja", "Port Harcourt", "Kano", "Ibadan"],
+      zones: [
+        "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue", "Borno",
+        "Cross River", "Delta", "Ebonyi", "Edo", "Ekiti", "Enugu", "FCT - Abuja", "Gombe",
+        "Imo", "Jigawa", "Kaduna", "Kano", "Katsina", "Kebbi", "Kogi", "Kwara", "Lagos",
+        "Nasarawa", "Niger", "Ogun", "Ondo", "Osun", "Oyo", "Plateau", "Rivers", "Sokoto",
+        "Taraba", "Yobe", "Zamfara"
+      ],
     },
-    {
+    Kenya: {
       country: "Kenya",
-      zones: ["Nairobi", "Mombasa", "Kisumu", "Eldoret", "Nakuru"],
+      zones: [
+        "Mombasa", "Kwale", "Kilifi", "Tana River", "Lamu", "Taita/Taveta", "Garissa",
+        "Wajir", "Mandera", "Marsabit", "Isiolo", "Meru", "Tharaka-Nithi", "Embu",
+        "Kitui", "Machakos", "Makueni", "Nyandarua", "Nyeri", "Kirinyaga", "Murang'a",
+        "Kiambu", "Turkana", "West Pokot", "Samburu", "Trans Nzoia", "Uasin Gishu",
+        "Elgeyo/Marakwet", "Nandi", "Baringo", "Laikipia", "Nakuru", "Narok", "Kajiado",
+        "Kericho", "Bomet", "Kakamega", "Vihiga", "Bungoma", "Busia", "Siaya", "Kisumu",
+        "Homa Bay", "Migori", "Kisii", "Nyamira", "Nairobi City"
+      ],
     },
-    {
+    Ghana: {
       country: "Ghana",
-      zones: ["Accra", "Kumasi", "Tamale", "Takoradi", "Tema"],
+      zones: [
+        "Ashanti", "Greater Accra", "Northern", "Volta", "Central", "Western", "Upper-West",
+        "Upper-East", "Oti", "Savannah", "Bono East", "Western North", "Brong Ahafo",
+        "North East", "Ahafo", "Eastern"
+      ],
     },
-    {
+    Uganda: {
       country: "Uganda",
-      zones: ["Kampala", "Entebbe", "Jinja", "Gulu", "Mbarara"],
+      zones: [
+        // Central Region
+        "Buikwe", "Bukomansimbi", "Butambala", "Buvuma", "Gomba", "Kalangala", "Kalungu",
+        "Kiboga", "Kyankwanzi", "Luweero", "Lwengo", "Lyantonde", "Masaka", "Mpigi",
+        "Mityana", "Mubende", "Mukono", "Nakaseke", "Nakasongola", "Rakai", "Sembabule",
+        "Wakiso", "Kampala",
+        // Western Region
+        "Bushenyi", "Bundibugyo", "Buliisa", "Buhweju", "Bunyangabu", "Rukungiri",
+        "Kiryandongo", "Kabarole", "Kamwiri", "Kasese", "Isingiro", "Ntungamo", "Ibanda",
+        "Mbarara", "Kyenjojo", "Kibale", "Masindi", "Kitagata", "Kiboga",
+        // Eastern Region
+        "Bugiri", "Busia", "Butaleja", "Butebo", "Bulambuli", "Kamuli", "Kapchorwa",
+        "Kumi", "Tororo", "Iganga", "Mayuge", "Jinja", "Mbale", "Nakapiripirit", "Soroti",
+        "Pallisa",
+        // Northern Region (removed duplicates for clarity)
+        "Abim", "Adjumani", "Agago", "Alebtong", "Amolatar", "Amudat", "Amuria", "Apac",
+        "Arua", "Amuru"
+      ],
     },
-    {
+    "South Africa": {
       country: "South Africa",
-      zones: ["Johannesburg", "Cape Town", "Durban", "Pretoria", "Bloemfontein"],
+      zones: [
+        "Eastern Cape", "Free State", "Gauteng", "KwaZulu-Natal", "Limpopo", "Mpumalanga",
+        "Northern Cape", "North West", "Western Cape"
+      ],
     },
-  ];
+  };
 
-  // Options for "How did you hear about Jumia?"
+  // Dynamically set shipping zones based on selected country
+  const shippingZones = [allShippingZones[selectedCountry] || allShippingZones["Nigeria"]];
+
+  // Options for "How did you hear about platform?"
   const hearAboutOptions = [
     "Social Media",
     "Friend or Family",
@@ -52,7 +97,6 @@ const VendorShopInfo = () => {
   ];
 
   const handleSubmit = () => {
-    // Validation
     if (!shopName) {
       setError("Shop name is required.");
       return;
@@ -62,7 +106,7 @@ const VendorShopInfo = () => {
       return;
     }
     if (!hearAbout) {
-      setError("Please select how you heard about Jumia.");
+      setError("Please select how you heard about the platform.");
       return;
     }
     if (!agreement) {
@@ -70,7 +114,6 @@ const VendorShopInfo = () => {
       return;
     }
 
-    // Show the modal instead of navigating immediately
     setShowModal(true);
   };
 
@@ -84,8 +127,7 @@ const VendorShopInfo = () => {
   const handleConfirm = () => {
     setShowModal(false);
     setError("");
-    // Proceed to the next step (e.g., navigate to a success page)
-    navigate("/vendor-success"); // Placeholder route
+    navigate("/vendor-success");
   };
 
   const handleCancel = () => {
@@ -184,7 +226,7 @@ const VendorShopInfo = () => {
             value={shopName}
             onChange={(e) => {
               setShopName(e.target.value);
-              setError(""); // Clear error on input change
+              setError("");
             }}
             className={`w-full p-3 border ${
               error && error.includes("Shop name") ? "border-red-500" : "border-gray-300"
@@ -215,7 +257,7 @@ const VendorShopInfo = () => {
             value={shippingZone}
             onChange={(e) => {
               setShippingZone(e.target.value);
-              setError(""); // Clear error on input change
+              setError("");
             }}
             className={`w-full p-3 border ${
               error && error.includes("Shipping zone") ? "border-red-500" : "border-gray-300"
@@ -241,20 +283,20 @@ const VendorShopInfo = () => {
           </div>
         </div>
 
-        {/* How did you hear about Jumia? */}
+        {/* How did you hear about the platform? */}
         <div className="mb-4 relative">
           <select
             value={hearAbout}
             onChange={(e) => {
               setHearAbout(e.target.value);
-              setError(""); // Clear error on input change
+              setError("");
             }}
             className={`w-full p-3 border ${
               error && error.includes("heard about") ? "border-red-500" : "border-gray-300"
             } rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-500 appearance-none`}
           >
             <option value="" disabled>
-              How did you hear about Jumia? *
+              How did you hear about our platform? *
             </option>
             {hearAboutOptions.map((option) => (
               <option key={option} value={option}>
@@ -276,12 +318,12 @@ const VendorShopInfo = () => {
             checked={agreement}
             onChange={(e) => {
               setAgreement(e.target.checked);
-              setError(""); // Clear error on input change
+              setError("");
             }}
             className="mt-1 mr-2 w-5 h-5 text-green-500 focus:ring-green-500"
           />
           <label className="text-gray-600 text-sm">
-            I hereby confirm that I have read and agree to the Nexify seller contract, Nexify codes, policies and guidelines and Privacy Notice and Cookie Notice referenced therein.
+            I hereby confirm that I have read and agree to the platform's seller contract, codes, policies, guidelines, Privacy Notice, and Cookie Notice referenced therein.
           </label>
         </div>
 

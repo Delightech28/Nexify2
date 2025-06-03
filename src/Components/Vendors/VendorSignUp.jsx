@@ -1,14 +1,18 @@
 // src/Components/Vendors/VendorSignUp.jsx
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaPlane, FaChevronDown } from "react-icons/fa"; // Added FaChevronDown for dropdown arrow
-import ReactCountryFlag from "react-country-flag"; // Import the flag component
+import { FaPlane, FaChevronDown } from "react-icons/fa";
+import ReactCountryFlag from "react-country-flag";
 import VendorsImage from '../../assets/vendors.png';
+import { db } from "../../firebase";
+import { doc, setDoc } from "firebase/firestore";
+import { v4 as uuidv4 } from "uuid";
 
 const VendorSignUp = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState(null);
-    const navigate = useNavigate();
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const countries = [
     { name: "Select your country *", code: "", disabled: true },
@@ -16,8 +20,7 @@ const VendorSignUp = () => {
     { name: "Kenya", code: "KE" },
     { name: "Ghana", code: "GH" },
     { name: "Uganda", code: "UG" },
-    { name: "South Africa", code: "ZA"},
-    // Add more countries as needed
+    { name: "South Africa", code: "ZA" },
   ];
 
   const handleCountrySelect = (country) => {
@@ -27,44 +30,50 @@ const VendorSignUp = () => {
     setIsDropdownOpen(false);
   };
 
-  const handleNext = () => {
-    if(selectedCountry){
-        navigate("/vendor-setup-account");
+  const handleNext = async () => {
+    if (selectedCountry) {
+      try {
+        const sessionId = uuidv4();
+        localStorage.setItem("signupSessionId", sessionId);
+        localStorage.setItem("selectedCountry", selectedCountry.name);
+
+        await setDoc(doc(db, "vendors", sessionId), {
+          country: selectedCountry.name,
+          createdAt: new Date().toISOString(),
+          step: "country_selection",
+        });
+
+        navigate("/vendor-setup-account", { state: { country: selectedCountry.name } });
+      } catch (err) {
+        setError("Something went wrong. Try again.");
+        console.error(err);
+      }
     }
-  }
+  };
 
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-50">
-      {/* Illustration Section */}
       <div className="w-full max-w-md px-4 mt-8 mb-6">
-        <img
-          src={VendorsImage}
-          alt="Vendor Shop Illustration"
-          className="w-full h-auto"
-        />
+        <img src={VendorsImage} alt="Vendor Shop Illustration" className="w-full h-auto" />
       </div>
 
       <div className="flex items-center mb-6">
-            <div className="w-4 h-4 bg-green-500 rounded-full"></div>
-            <div className="w-8 h-1 bg-green-500 mx-1"></div>
-            <div className="w-4 h-4 bg-green-100 rounded-full"></div>
-            <div className="w-8 h-1 bg-green-100 mx-1"></div>
-            <div className="w-4 h-4 bg-green-100 rounded-full"></div>
-            <div className="w-8 h-1 bg-green-100 mx-1"></div>
+        <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+        <div className="w-8 h-1 bg-green-500 mx-1"></div>
+        <div className="w-4 h-4 bg-green-100 rounded-full"></div>
+        <div className="w-8 h-1 bg-green-100 mx-1"></div>
+        <div className="w-4 h-4 bg-green-100 rounded-full"></div>
+        <div className="w-8 h-1 bg-green-100 mx-1"></div>
         <div className="w-4 h-4 bg-green-100 rounded-full"></div>
         <div className="w-8 h-1 bg-green-100 mx-1"></div>
         <div className="w-4 h-4 bg-green-100 rounded-full"></div>
       </div>
 
-      {/* Heading and Subheading */}
       <div className="w-full max-w-md px-4 mb-4 text-center">
-        <h1 className="text-2xl font-semibold text-gray-800 mb-2">
-          Sell on Our Platform
-        </h1>
+        <h1 className="text-2xl font-semibold text-gray-800 mb-2">Sell on Our Platform</h1>
         <p className="text-gray-600">Choose the country of your shop</p>
       </div>
 
-      {/* Custom Country Selection Dropdown */}
       <div className="w-full max-w-md px-4 mb-4">
         <div className="relative">
           <button
@@ -112,45 +121,35 @@ const VendorSignUp = () => {
           )}
         </div>
 
+        {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+
         <button
           className="w-full bg-green-500 text-white py-3 rounded-lg mt-4 hover:bg-green-600 transition-colors cursor-pointer"
-          disabled={!selectedCountry} // Disable button until a country is selected
+          disabled={!selectedCountry}
           onClick={handleNext}
         >
           NEXT
         </button>
-        <p className="text-gray-500 text-sm mt-2">
-          Only for sellers registered & selling in their own country
-        </p>
+        <p className="text-gray-500 text-sm mt-2">Only for sellers registered & selling in their own country</p>
       </div>
 
-      {/* OR Divider */}
       <div className="w-full max-w-md px-4 my-6 flex items-center">
         <div className="flex-1 h-px bg-gray-300"></div>
         <span className="mx-4 text-gray-500">OR</span>
         <div className="flex-1 h-px bg-gray-300"></div>
       </div>
 
-      {/* Sell Globally Section */}
       <div className="w-full max-w-md px-4 mb-6">
         <button className="w-full flex items-center justify-center border border-blue-500 text-blue-500 py-3 rounded-lg hover:bg-blue-50 transition-colors cursor-pointer">
           <FaPlane className="mr-2 text-blue-500" />
           Sell GLOBALLY on Our Platform
         </button>
-        <p className="text-gray-600 text-sm mt-2">
-          Register as a Global seller and sell your products across the region.
-        </p>
-        <a
-          href="https://www.example.com/global"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-500 hover:underline"
-        >
+        <p className="text-gray-600 text-sm mt-2">Register as a Global seller and sell your products across the region.</p>
+        <a href="https://www.example.com/global" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
           KNOW MORE about Global Selling
         </a>
       </div>
 
-      {/* Sign In Link */}
       <div className="mb-8">
         <p className="text-gray-600">
           ALREADY HAVE AN ACCOUNT?
@@ -164,3 +163,4 @@ const VendorSignUp = () => {
 };
 
 export default VendorSignUp;
+

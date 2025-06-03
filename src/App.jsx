@@ -17,6 +17,7 @@ import VendorSetupAccountv from './Components/Vendors/VendorSetupAccountv';
 import VendorSetupAccountp from './Components/Vendors/VendorSetupAccountp';
 import VendorShopInfo from './Components/Vendors/VendorShopInfo';
 import LoadingScreen from './Components/Vendors/LoadingScreen';
+import VendorLogIn from "./Components/Vendors/VendorLogIn";
 import { useState } from "react";
 
 function App() {
@@ -61,6 +62,7 @@ function App() {
          <Route path="/vendor-setup-accountp" element={<VendorSetupAccountp />} />
          <Route path="/vendor-shop-info" element={<VendorShopInfo />} />
          <Route path="/vendor-success" element={<LoadingScreen />} />
+         <Route path="/vendor-login" element={<VendorLogIn />} />
         {/* Other Routes */}
         {/* <Route path="/" element={<h1 className="p-4 text-xl md:p-6 md:text-2xl">Home Page</h1>} /> */}
         <Route path="/calendar" element={<h1 className="p-4 text-xl md:p-6 md:text-2xl">Calendar Page</h1>} />

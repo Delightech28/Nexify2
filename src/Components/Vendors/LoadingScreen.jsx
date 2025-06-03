@@ -13,7 +13,7 @@ const LoadingScreen = () => {
   // Redirect after 20 seconds
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate('/dashboard'); // Replace '/dashboard' with your desired redirect path
+      navigate('/vendor-login'); // Replace '/dashboard' with your desired redirect path
     }, 20000); // 20 seconds
 
     return () => clearTimeout(timer); // Cleanup timer on component unmount
