@@ -72,7 +72,7 @@ const VendorSetupAccountv = () => {
         { merge: true }
       );
 
-      navigate("/vendor-personal-info");
+      navigate("/vendor-setup-accountp");
     } catch (err) {
       setError("Something went wrong. Try again.");
       console.error(err);
