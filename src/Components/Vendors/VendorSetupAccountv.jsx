@@ -57,13 +57,14 @@ const VendorSetupAccountv = () => {
         return;
       }
 
-      await deleteDoc(verificationRef);
-
       const storedSessionId = localStorage.getItem("signupSessionId");
       if (sessionId !== storedSessionId) {
         setError("Session mismatch. Please start over.");
         return;
       }
+
+
+      await deleteDoc(verificationRef);
 
       await setDoc(
         doc(db, "vendors", sessionId),
